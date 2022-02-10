@@ -1,0 +1,39 @@
+#include <string.h>
+
+char *language = NULL;
+
+int greetuser(char *s1)
+{
+    char hello[78];
+
+    if (language == 1)
+        strcpy(hello, "Hyvää päivää ");
+    else if (language == 2)
+        strcpy(hello, "Goedemiddag! ");
+    else if (!language)
+        strcpy(hello, "Hello ");
+    strcat(hello, s1);
+    puts(hello);
+    return(0);
+}
+
+int main (int ac, char **av)
+{
+    char buf[72];
+
+    if (ac != 3)
+        exit(1);
+    memset(buf, 0, 72);
+    strncpy(buf, av[1], 40);
+    strncpy(buf[40], av[2], 32);
+    char *lang = getenv("LANG");
+    if (lang)
+    {
+        if (memcmp(lang, "fi", 2) == 0)
+            language = 1;
+        if (memcmp(lang, "nl", 2) == 0)
+            language = 2;
+    }
+    greetuser(buf);
+    return(0);
+}

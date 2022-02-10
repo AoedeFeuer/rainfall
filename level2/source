@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int p(void)
+{
+    char temp[76];
+    void *ret;
+
+    fflush(stdout);
+    gets(temp);
+
+    if(((int)ret & 0xb0000000) == 0xb0000000)
+    {
+        printf("(%p)\n", ret);
+        _exit(1);
+    }
+
+    puts(temp);
+    strdup(temp);
+    
+    return;
+}
+
+int main(void)
+{
+    p();
+    return;
+}

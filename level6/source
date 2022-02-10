@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void *n(char *buffer)
+{
+    system("/bin/cat /home/user/level7/.pass");
+}
+
+void *m(void)
+{
+    puts("Nope");
+}
+
+int main(int ac, char **av)
+{
+    char *s;
+    void (*funct)(void);
+    
+    s = malloc(64);
+    funct = malloc(4);
+    funct = m();
+    
+    strcpy(s, av[1]);
+    funct();
+    
+    return;
+}
